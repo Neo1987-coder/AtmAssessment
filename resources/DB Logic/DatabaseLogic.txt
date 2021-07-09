@@ -1,0 +1,90 @@
+# Hello Neo !............ Hope you're okay ?
+
+# THIS IS OUR DB LOGIC
+
+# T.O.C
+
++++++ We need a user table which obviously will hold the details of all users of our ATM interface.
+Each user should have an account number, pin, name, account balance, beneficiaries, and a unique ID (unique id here is an identity number unique to each customer).
+All the column fields except 'beneficiaries' must not be empty/null since users must have an account number, pin, name, account balance,
+but users can choose to, or not to have a beneficiary.
+NOTE: The users will be created manually within our database since basically but the beneficiaries field will be left blank, an ATM can't register a user in the bank.
+	  The reason the beneficiaries field is left blank is because, upon every successful transaction, we will prompt the initiator of that transaction a pop-up box
+	  if they will like to save the receiver of that transferred money as a beneficiary. 
+	  if the initiator click on yes, we will add the beneficiaries UNIQUE ID dynamically to the field. It will be added in the format:
+	  ID1|ID2|ID3|...
+	  
+	  ID1, 2 and 3 are UNIQUE IDs of beneficiaries seperated with the pipe symbol (|)
+	  we seperate this to be able to accumulate and manipulate multiple IDs (Since we know a user can have more than one beneficiary).
+
+==> We gon create a table 'users', with columns:
+'ID', 'NAME', 'ACCOUNT_NUMBER', 'PIN', 'BALANCE', 'BENEFICIARIES'.
+
+
+
++++++  We need a table to hold transactions. Yes, all transactions. This transactions will include details of transfers and deposits
++ for us to know which user initiated transfer or deposit, we will have a column called 'initiator_id' which will hold the unique id of the user who initiated the transaction.
+this 'initiator_id' field must not be empty/null since a transaction cant just initiate itself (a user must initiate it)
++ We need a column called 'type' which will hold which type of transaction occured (either deposit or transfer)
+this 'type' field must not be empty/null since every transaction must either be a deposit or transfer.. (if you think of any type of transaction, write it below this line).
++ We need a column called 'amount' which will hold how much was deposited or transferred during the course of the transaction
+this 'amount' field must not be null since there must be an amount to send or receive in every transaction.
++ We need a column called 'destination_id' which will hold the unique id of the receiver of the transferred cash.
+ie. if the transaction is a transfer, our transfer must get to another user (he will receive the money and his acc credited)
+this 'destination_id' field can be null (remember we need the destination id for a transfer only, but what if it was a deposit ?? ... yes, we wouldnt need a destination id since the initiator of the transfer is also the receiver of the cash)
+
+
+==> We gon create a table 'transactions', with columns:
+'INITIATOR_ID', 'TYPE', 'AMOUNT', ............ (complete the missing we need to create).
+
+
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SQL FOR THE TABLES:
++ USERS:
+
+CREATE TABLE `USERS` (
+	ID INT(9) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(50) NOT NULL,
+	ACCOUNT_NUMBER VARCHAR(10) NOT NULL,
+	PIN INT(4) NOT NULL,
+	BALANCE DECIMAL(20, 2) NOT NULL,
+	BENEFICIARIES VARCHAR(50) NULL
+);
+
+
+
++ MANUAL CREATION OF 2 USERS:
+
+INSERT INTO `USERS` (NAME, ACCOUNT_NUMBER, PIN, BALANCE) VALUES 
+('NEO MARUPING', '0033557788', '1122', '700000'),
+('CHARLES PAUL', '0032557788', '1234', '1300000')
+
+
+
+
+
++ TRANSACTIONS:
+
+CREATE TABLE `TRANSACTIONS` (
+	ID INT(9) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	INITIATOR_ID INT(9) NOT NULL,
+	TYPE VARCHAR(10) NOT NULL,
+	AMOUNT DECIMAL(20, 2) NOT NULL,
+	DESTINATION_ID INT(9) NULL,
+	DATE VARCHAR(30) NOT NULL
+);
+
+
+
+
+
+
+
+
+Please try to comprehend this logic so you can be able to defend this your project in future cuz you definately will..!
