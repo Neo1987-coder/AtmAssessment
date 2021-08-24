@@ -32,7 +32,7 @@ public class BalAndStmtWindow extends Application {
         //Label l = new Label ("Hello, JavaFX 11, running on "+version);
         //Scene scene = new Scene (new StackPane(l), 300, 200);
 		
-		// The box to contain the whole layout. Please read more on Vertical boxes layout on java FX
+
 		VBox wrapperBox = new VBox ();
 		// Set a padding for the VBox (top, left, bottom, right)
 		wrapperBox.setPadding(new Insets(80,60,10,60));
@@ -48,7 +48,7 @@ public class BalAndStmtWindow extends Application {
 		buildData();
 		
 		// My wrapper box should stack contents at the top center 
-		// Note: it contains the welcome message at top and the border pane which contains the left and right buttons
+		
 		wrapperBox.setAlignment(Pos.TOP_CENTER);
 		wrapperBox.getChildren().addAll(welcomeMssg, tableview);
 		
@@ -72,8 +72,8 @@ public class BalAndStmtWindow extends Application {
 		 *********************************
 		 */
 		/*
-		 * for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) { // We are using
-		 * non property style for making dynamic table final int j = i;
+		 * for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) 
+		 * 		 * non property style for making dynamic table final int j = i;
 		 * 
 		 * }
 		 */

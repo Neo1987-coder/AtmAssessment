@@ -43,15 +43,13 @@ public class MainWindow extends Application {
         //Label l = new Label ("Hello, JavaFX 11, running on "+version);
         //Scene scene = new Scene (new StackPane(l), 300, 200);
 		
-		// The box to contain the whole layout. Please read more on Vertical boxes layout on java FX
+		
 		VBox wrapperBox = new VBox ();
 		// Set a padding for the VBox (top, left, bottom, right)
 		wrapperBox.setPadding(new Insets(80,60,10,60));
 		wrapperBox.setSpacing(50);
 		
-		// Of course you know how a label works already but the line below it is the style i choose to give this label
-		// You can tweak this styling. Read on java FX css styling
-		// {{name}} will be replaced with our user's name from DB during our next pull
+		
 		Label welcomeMssg = new Label("Welcome "+ this.user.getName() +" to NEO Bank, Happy banking !! \n"+this.user.getBalance()+"");
 		welcomeMssg.setStyle("-fx-font-family:monospace;"
 					        	+"-fx-font-size:29px;");
@@ -65,12 +63,7 @@ public class MainWindow extends Application {
 		VBox rightButtons = new VBox();
 		rightButtons.setSpacing(20);
 		
-		/**
-		 * All buttons to display at the left side of the screen.
-		 * Note the preferred width and height are all equal (for uniformity)
-		 * Please the "BUY AIRTIME" button, feel free to change it to whatever you want 
-		 * we will add click events to all buttons at the time of our next git pull
-		 */
+		
 		Button withdrawBtn = new Button("WITHDRAW");
 		withdrawBtn.setPrefWidth(280);
 		withdrawBtn.setPrefHeight(60);
@@ -94,7 +87,7 @@ public class MainWindow extends Application {
 		// Adding all the buttons to the leftButtons VBox (vertical box) so they can be placed vertically one after the other
 		leftButtons.getChildren().addAll(withdrawBtn, depositBtn, transferBtn, airtimeBtn);
 		// adding the leftButtons VBox to the left side using the border pane layout.
-		// please try to read more on border pane layout.
+		
 		borderPane.setLeft(leftButtons);
 		
 		
@@ -105,11 +98,6 @@ public class MainWindow extends Application {
 		
 		
 		
-		/**
-		 * All buttons to display at the right side of the screen.
-		 * Note the preferred width and height are all equal (for uniformity)
-		 * we will add click events to all buttons at the time of our next git pull
-		 */
 		Button statement_balance_Btn = new Button("STATEMENT & BALANCE");
 		statement_balance_Btn.setPrefWidth(280);
 		statement_balance_Btn.setPrefHeight(60);
@@ -133,7 +121,7 @@ public class MainWindow extends Application {
 		// Adding all the buttons to the rightButtons VBox (vertical box) so they can be placed vertically one after the other
 		rightButtons.getChildren().addAll(statement_balance_Btn, pay_beneficiaryBtn, change_pinBtn, quitBtn);
 		// adding the leftButtons VBox to the right side using the border pane layout.
-		// please try to read more on border pane layout.
+		
 		borderPane.setRight(rightButtons);
 		
 		// My wrapper box should stack contents at the top center 
@@ -181,13 +169,9 @@ public class MainWindow extends Application {
 		transferAmtTxt.setPromptText("Enter the amount to transfer");
 		transferAmtTxt.setOnKeyPressed(evt -> intOnly(evt, transferAmtTxt));
 		// Button indicating currency symbol for amount field
-		Button nairaBtn = new Button("NGN");
-		/**
-		 * Add the currency symbol button (nairaBtn in this case) and the amount text field in the inputGroup horizontal box
-		 * NOTE: This is to create a fancy looking amount text field with the currency symbol button prepended to it
-		 * e.g in the case of bootstrap's input-group class.
-		 */
-		HBox inputGroup = new HBox(nairaBtn, transferAmtTxt);
+		Button zarBtn = new Button("ZAR");
+		
+		HBox inputGroup = new HBox(zarBtn, transferAmtTxt);
 		inputGroup.setSpacing(-5);
 		
 		
@@ -204,7 +188,7 @@ public class MainWindow extends Application {
 				if( !(accNoTxt.getText()==null||transferAmtTxt.getText().trim().equals("")) ) {	
 					int i = processTransfer(user, Float.valueOf(transferAmtTxt.getText()), accNoTxt.getText());
 					 if(i>0) {
-						Message.info("PAY BENEFICIARY", "Transfer Successful !", "Successfully transferred NGN "+transferAmtTxt.getText()+" to "+accNoTxt.getText()+". Your new account balance is NGN "+ user.getBalance() +"", stage, alert);
+						Message.info("PAY BENEFICIARY", "Transfer Successful !", "Successfully transferred NGN "+transferAmtTxt.getText()+" to "+accNoTxt.getText()+". Your new account balance is ZAR "+ user.getBalance() +"", stage, alert);
 						Transaction t = new Transaction(user.getId(), "TRANSFER", BigDecimal.valueOf(Long.parseLong(transferAmtTxt.getText())), new UsersDAO().getUser(accNoTxt.getText()).getId());
 						System.out.println(new UsersDAO().getUser(accNoTxt.getText()).getId());
 						new TransactionDAO().save(t);
@@ -255,12 +239,7 @@ public class MainWindow extends Application {
 	}
 	
 	
-	/**
-	 * This method gets called when the user clicks on the buy airtime button
-	 * @param e
-	 * @param stage
-	 * @param user2
-	 */
+	
 	private void processBuyAirtime(ActionEvent e, Stage stage, User user) {
 		// Creates a dialog box to carry out the change password operation
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -284,13 +263,9 @@ public class MainWindow extends Application {
 		depositAmtTxt.setPromptText("Enter airtime amount to top up");
 		depositAmtTxt.setOnKeyPressed(evt -> intOnly(evt, depositAmtTxt));
 		// Button indicating currency symbol for amount field
-		Button nairaBtn = new Button("NGN");
-		/**
-		 * Add the currency symbol button (nairaBtn in this case) and the amount text field in the inputGroup horizontal box
-		 * NOTE: This is to create a fancy looking amount text field with the currency symbol button prepended to it
-		 * e.g in the case of bootstrap's input-group class.
-		 */
-		HBox inputGroup = new HBox(nairaBtn, depositAmtTxt);
+		Button zarBtn = new Button("ZAR");
+		
+		HBox inputGroup = new HBox(zarBtn, depositAmtTxt);
 		inputGroup.setSpacing(-5);
 		
 		
@@ -327,7 +302,7 @@ public class MainWindow extends Application {
 							user.setBalance(user.getBalance()-Float.valueOf(depositAmtTxt.getText()));
 							int i = new UsersDAO().update(user);
 		    				 if(i>0) {
-								Message.info("BUY AIRTIME", "Airtime Top up Successful !", "Your new account balance is NGN "+ user.getBalance() +"", stage, alert);
+								Message.info("BUY AIRTIME", "Airtime Top up Successful !", "Your new account balance is ZAR "+ user.getBalance() +"", stage, alert);
 								Transaction t = new Transaction(user.getId(), "WITHDRAW", BigDecimal.valueOf(Long.parseLong(depositAmtTxt.getText()), 2));
 								new TransactionDAO().save(t);
 								// Refresh the stage
@@ -369,12 +344,7 @@ public class MainWindow extends Application {
 	
 	
 
-	/**
-	 * This methods processes user transfer, debits the initiator of the transfer and credits the receiver of the transfer
-	 * @param e
-	 * @param stage
-	 * @param user2
-	 */
+	
 	private void processTransfer(ActionEvent e, Stage stage, User user) {
 		// Creates a dialog box to carry out the transfer operation
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -405,13 +375,9 @@ public class MainWindow extends Application {
 		transferAmtTxt.setPromptText("Enter the amount to transfer");
 		transferAmtTxt.setOnKeyPressed(evt -> intOnly(evt, transferAmtTxt));
 		// Button indicating currency symbol for amount field
-		Button nairaBtn = new Button("NGN");
-		/**
-		 * Add the currency symbol button (nairaBtn in this case) and the amount text field in the inputGroup horizontal box
-		 * NOTE: This is to create a fancy looking amount text field with the currency symbol button prepended to it
-		 * e.g in the case of bootstrap's input-group class.
-		 */
-		HBox inputGroup = new HBox(nairaBtn, transferAmtTxt);
+		Button zarBtn = new Button("ZAR");
+		
+		HBox inputGroup = new HBox(zarBtn, transferAmtTxt);
 		inputGroup.setSpacing(-5);
 		
 		
@@ -428,7 +394,7 @@ public class MainWindow extends Application {
 				if( !(accNoTxt.getText()==null||transferAmtTxt.getText().trim().equals("")) ) {	
 					int i = processTransfer(user, Float.valueOf(transferAmtTxt.getText()), accNoTxt.getText());
 					 if(i>0) {
-						Message.info("TRANSFER FUND", "Transfer Successful !", "Successfully transferred NGN "+transferAmtTxt.getText()+" to "+accNoTxt.getText()+". Your new account balance is NGN "+ user.getBalance() +"", stage, alert);
+						Message.info("TRANSFER FUND", "Transfer Successful !", "Successfully transferred ZAR "+transferAmtTxt.getText()+" to "+accNoTxt.getText()+". Your new account balance is ZAR "+ user.getBalance() +"", stage, alert);
 						Transaction t = new Transaction(user.getId(), "TRANSFER", BigDecimal.valueOf(Long.parseLong(transferAmtTxt.getText())), new UsersDAO().getUser(accNoTxt.getText()).getId());
 						System.out.println(new UsersDAO().getUser(accNoTxt.getText()).getId());
 						new TransactionDAO().save(t);
@@ -469,14 +435,6 @@ public class MainWindow extends Application {
 		}
 	}
 	
-	
-	
-	/**
-	 * Method for adding a beneficiary after successful transfer
-	 * @param user
-	 * @param beneficiary
-	 * @param stage
-	 */
 	private void addBeneficiary(User user, String beneficiary, Stage stage) {
 		user.setBeneficiaries(beneficiary+"|");
 		new UsersDAO().update(user);
@@ -485,14 +443,6 @@ public class MainWindow extends Application {
 	}
 	
 	
-
-	/**
-	 * This method gets called when a user initiates a transfer
-	 * @param user The user who initiated the transfer
-	 * @param amount The amount to transfer
-	 * @param destinationAccNo The receiver of the transferred fund
-	 * @return an integer > 0 if transfer was successful
-	 */
 	private int processTransfer(User user, Float amount, String destinationAccNo) {
 		// Checks if a user with the account number to transfer to exists
 		if(new UsersDAO().getUser(destinationAccNo) == null) return -1;
@@ -514,12 +464,7 @@ public class MainWindow extends Application {
 		return 0;
 	}
 
-	/**
-	 * This method gets called when a user makes a withdraw
-	 * @param e The action event source
-	 * @param stage The stage on which the action was performed
-	 * @param user2 The user object trigerring the action
-	 */
+	
 	private void processWithdraw(ActionEvent e, Stage stage, User user) {
 		Stage newStage = new Stage();
 		WithdrawWindow newWindow = new WithdrawWindow(user);
@@ -534,12 +479,6 @@ public class MainWindow extends Application {
 	}
 	
 
-	/**
-	 * This method gets called when a user tries to make a deposit
-	 * @param e The action event source
-	 * @param stage The stage on which the action was performed
-	 * @param user2 The user object trigerring the action
-	 */
 	private void processDeposit(ActionEvent e, Stage stage, User user) {
 		// Creates a dialog box to carry out the change password operation
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -563,13 +502,9 @@ public class MainWindow extends Application {
 		depositAmtTxt.setPromptText("Enter the amount to deposit");
 		depositAmtTxt.setOnKeyPressed(evt -> intOnly(evt, depositAmtTxt));
 		// Button indicating currency symbol for amount field
-		Button nairaBtn = new Button("NGN");
-		/**
-		 * Add the currency symbol button (nairaBtn in this case) and the amount text field in the inputGroup horizontal box
-		 * NOTE: This is to create a fancy looking amount text field with the currency symbol button prepended to it
-		 * e.g in the case of bootstrap's input-group class.
-		 */
-		HBox inputGroup = new HBox(nairaBtn, depositAmtTxt);
+		Button zarBtn = new Button("ZAR");
+		
+		HBox inputGroup = new HBox(zarBtn, depositAmtTxt);
 		inputGroup.setSpacing(-5);
 		
 		
@@ -606,7 +541,7 @@ public class MainWindow extends Application {
 							fundUser(user, Float.valueOf(depositAmtTxt.getText()));
 							int i = new UsersDAO().update(user);
 		    				 if(i>0) {
-								Message.info("MAKE DEPOSIT", "Deposit Successful !", "Your new account balance is NGN "+ user.getBalance() +"", stage, alert);
+								Message.info("MAKE DEPOSIT", "Deposit Successful !", "Your new account balance is ZAR "+ user.getBalance() +"", stage, alert);
 								Transaction t = new Transaction(user.getId(), "DEPOSIT", BigDecimal.valueOf(Long.parseLong(depositAmtTxt.getText()), 2));
 								new TransactionDAO().save(t);
 								// Refresh the stage
@@ -648,10 +583,7 @@ public class MainWindow extends Application {
 	
 	
 
-	/**
-	 * Logout method which closes the current stage and opens the auth/login stage
-	 * @param stage The current stage
-	 */
+	
 	private void quit(Stage stage) {
 		if(Message.confirm("Quit", "Are you sure you want to quit ?", null, "YES", "NO", stage, alert) == 1) {
 			Stage newStage = new Stage();
@@ -671,12 +603,7 @@ public class MainWindow extends Application {
 	}
 	
 	
-	/**
-	 * Change Pin method.
-	 * Gets called when the user clicks on the change pin button
-	 * @param stage The current stage where the action was performed
-	 * @param user The current user object
-	 */
+	
 	private void changePin(Event e, Stage stage, User user) {
 		// Creates a dialog box to carry out the change password operation
 		Dialog<ButtonType> dialog = new Dialog<>();
@@ -750,11 +677,7 @@ public class MainWindow extends Application {
 	
 	
 	
-	/**
-	 * This method ensures that integers are the only input entered in a text field
-	 * @param e The key event source
-	 * @param The field whose input is been validated
-	 */
+	
 	private void intOnly(KeyEvent e, TextField field) {
 		if(!((e.getCode().isDigitKey()) || (e.getCode().equals(KeyCode.BACK_SPACE) ) || (e.getCode().isArrowKey()) || (e.getCode().equals(KeyCode.DELETE)))) {
 			Toolkit.getDefaultToolkit().beep();

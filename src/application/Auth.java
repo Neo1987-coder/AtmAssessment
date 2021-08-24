@@ -26,15 +26,13 @@ public class Auth extends Application {
 	@Override
 	public void start(Stage stage) {
         
-		// The box to contain the whole layout. Please read more on Vertical boxes layout on java FX
+		
 		VBox wrapperBox = new VBox ();
 		// Set a padding for the VBox (top, left, bottom, right)
 		wrapperBox.setPadding(new Insets(80,60,10,60));
 		wrapperBox.setSpacing(50);
 		
-		// Of course you know how a label works already but the line below it is the style i choose to give this label
-		// You can tweak this styling. Read on java FX css styling
-		// {{name}} will be replaced with our user's name from DB during our next pull
+		
 		Label greeting = new Label("Hello !");
 		greeting.setStyle("-fx-font-family:monospace;"
 					        	+"-fx-font-size:25px;");
@@ -52,16 +50,14 @@ public class Auth extends Application {
 		sessionBtn.setPrefHeight(60);
 		sessionBtn.setOnAction(e -> loginAuth(stage));
 		
-		// Border pane here holds the vertically aligned buttons in the left and right screen position
+		
 		BorderPane borderPane = new BorderPane();
 		
 
-		// adding the leftButtons VBox to the right side using the border pane layout.
-		// please try to read more on border pane layout.
+		
 		borderPane.setCenter(sessionBtn);
 		
-		// My wrapper box should stack contents at the top center 
-		// Note: it contains the welcome message at top and the border pane which contains the left and right buttons
+		
 		wrapperBox.setAlignment(Pos.TOP_CENTER);
 		wrapperBox.getChildren().addAll(greeting, welcomeMssg, advice, borderPane);
 		
@@ -86,8 +82,7 @@ public class Auth extends Application {
 		ButtonType proceedBtn = new ButtonType("Proceed", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(proceedBtn, ButtonType.CANCEL);
 
-		// Create the new login form with account number & pin fields.
-		// Below grid will contain the form
+		
 		GridPane grid = new GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
@@ -124,7 +119,7 @@ public class Auth extends Application {
 				return;
 			}
 			
-			// Create a new User object and populate with form details if entered field matches a record in database
+			
 			User newUser = new User();
 			newUser = new UsersDAO().getUser(accNumber.getText(), Integer.parseInt(pin.getText()));
 			

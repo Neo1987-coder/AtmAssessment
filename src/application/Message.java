@@ -26,6 +26,7 @@ public class Message {
 
 		return alert;
 	}
+	
 
 	public static Alert info(String x, String y, String z, Stage stage, Alert alert) {
 		alert = new Alert(AlertType.INFORMATION);

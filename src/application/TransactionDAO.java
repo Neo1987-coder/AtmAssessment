@@ -9,12 +9,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- * Our users Database Access Object which will enable communication between the transection object and database
- * Queries will be written here 
- * @author dev.charles15531@gmail.com
- *
- */
+
 public class TransactionDAO {
 	
 	Connection con;
@@ -26,14 +21,10 @@ public class TransactionDAO {
 	}
 
 	
-	/**
-	 * This method is called To get Transactions
-	 * 
-	 * @return The transaction object if transactions exist, or null if transactions does not exist
-	 */
+	
 	public ObservableList<Transaction> getTransaction(int _id) {
 		ObservableList<Transaction> data = FXCollections.observableArrayList();
-		// Select query.... [please, you have to read more on SQL, it'll help you alot]
+		// Select query....
 		try {
 			PreparedStatement ps = this.con.prepareStatement(
 					"select * from TRANSACTIONS WHERE INITIATOR_ID = '"+_id+"' ORDER BY ID DESC", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -80,10 +71,7 @@ public class TransactionDAO {
 	
 	
 	
-	/**
-	 * Gets the total number of transactions in DB.
-	 * @return The number of total transactions
-	 */
+	
 	public int getTransactionsCount(int id) {
 		try {
 			PreparedStatement ps = this.con.prepareStatement(
@@ -111,13 +99,6 @@ public class TransactionDAO {
 	
 	
 	
-	/**
-	 * Saves a transaction instance in the database
-	 * 
-	 * @param trans the transaction instance to save
-	 * @return an integer greater than 0 on save execution
-	 * @throws SQLException
-	 */
 	public int save(Transaction trans) {
 		// Variable to hold return value
 		int returnVal;

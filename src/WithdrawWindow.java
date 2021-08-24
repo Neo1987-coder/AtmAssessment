@@ -35,7 +35,7 @@ public class WithdrawWindow extends Application {
         //Label l = new Label ("Hello, JavaFX 11, running on "+version);
         //Scene scene = new Scene (new StackPane(l), 300, 200);
 		
-		// The box to contain the whole layout. Please read more on Vertical boxes layout on java FX
+		
 		VBox wrapperBox = new VBox ();
 		// Set a padding for the VBox (top, left, bottom, right)
 		wrapperBox.setPadding(new Insets(80,60,10,60));
@@ -58,10 +58,7 @@ public class WithdrawWindow extends Application {
 		VBox rightButtons = new VBox();
 		rightButtons.setSpacing(20);
 		
-		/**
-		 * All buttons to display at the left side of the screen.
-		 * Note the preferred width and height are all equal (for uniformity)
-		 */
+		
 		Button _500Btn = new Button("500");
 		_500Btn.setPrefWidth(280);
 		_500Btn.setPrefHeight(60);
@@ -96,10 +93,7 @@ public class WithdrawWindow extends Application {
 		
 		
 		
-		/**
-		 * All buttons to display at the right side of the screen.
-		 * Note the preferred width and height are all equal (for uniformity)
-		 */
+		
 		Button _20000Btn = new Button("20000");
 		_20000Btn.setPrefWidth(280);
 		_20000Btn.setPrefHeight(60);
@@ -123,7 +117,7 @@ public class WithdrawWindow extends Application {
 		// Adding all the buttons to the rightButtons VBox (vertical box) so they can be placed vertically one after the other
 		rightButtons.getChildren().addAll(_20000Btn, _25000Btn, otherAmtBtn, backBtn);
 		// adding the leftButtons VBox to the right side using the border pane layout.
-		// please try to read more on border pane layout.
+		
 		borderPane.setRight(rightButtons);
 		
 		// My wrapper box should stack contents at the top center 
@@ -142,14 +136,7 @@ public class WithdrawWindow extends Application {
 
 	
 	
-	/** 
-	 * This method gets called when a user makes a withdraw
-	 * 
-	 * @param e The action event source
-	 * @param stage The stage on which the action was performed
-	 * @param user The user object trigerring the action
-	 * @param amt The amount set to withdraw
-	 */
+	
 	private void withdraw(ActionEvent e, Stage stage, User user, String amt) {
 		float userAmt = user.getBalance();
 		float withdrawAmt;
@@ -183,12 +170,7 @@ public class WithdrawWindow extends Application {
 
 	
 
-	/**
-	 * Logout method which closes the current stage and opens the auth/login stage
-	 * @param e Action event source
-	 * @param stage The current stage
-	 * @param user 
-	 */
+	
 	private void goBack(ActionEvent e, Stage stage, User user) {
 		if(Message.confirm("Go Back", "Do you want to end this transaction?", null, "YES", "NO", stage, alert) == 1) {
 			Stage newStage = new Stage();
@@ -209,12 +191,7 @@ public class WithdrawWindow extends Application {
 	
 	
 	
-	/**
-	 * Withdraw method for other amount (custom amount)
-	 * Gets called when the user clicks on the 'Other Amount' button
-	 * @param stage The current stage where the action was performed
-	 * @param user The current user object
-	 */
+	
 	private void customWithdraw(ActionEvent e, Stage stage, User user) {
 		// Creates a dialog box to carry out the change password operation
 		Dialog<ButtonType> dialog = new Dialog<>();

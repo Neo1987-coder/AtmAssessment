@@ -142,8 +142,7 @@ public class Transaction extends User {
 	 * public void setSn(int sn) { this.sn = sn; }
 	 * 
 	 *//**
-		 * This method is a helper in making the students table view And helps in
-		 * serially numbering each rows
+		 *
 		 * 
 		 * @return The current row number
 		 *//*
@@ -151,7 +150,7 @@ public class Transaction extends User {
 			 */
 
 	////////////////////////////////////////////////////////////////////////////////
-	// FOR OUR TABLE VIEW
+	// FOR TABLE VIEW
 	////////////////////////////////////////////////////////////////////////////////
 
 	public String getReceiversName() {

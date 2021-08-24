@@ -32,14 +32,14 @@ public class BalAndStmtWindow extends Application {
         //Label l = new Label ("Hello, JavaFX 11, running on "+version);
         //Scene scene = new Scene (new StackPane(l), 300, 200);
 		
-		// The box to contain the whole layout. Please read more on Vertical boxes layout on java FX
+		
 		VBox wrapperBox = new VBox ();
 		// Set a padding for the VBox (top, left, bottom, right)
 		wrapperBox.setPadding(new Insets(80,60,10,60));
 		wrapperBox.setSpacing(50);
 		
 		
-		Label welcomeMssg = new Label("CURRENT BALANCE: NGN "+this.user.getBalance()+"");
+		Label welcomeMssg = new Label("CURRENT BALANCE: ZAR "+this.user.getBalance()+"");
 		welcomeMssg.setStyle("-fx-font-family:monospace;"
 					        	+"-fx-font-size:29px;");
 		
@@ -72,7 +72,7 @@ public class BalAndStmtWindow extends Application {
 		 *********************************
 		 */
 		/*
-		 * for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) { // We are using
+		 * for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) 
 		 * non property style for making dynamic table final int j = i;
 		 * 
 		 * }

@@ -3,11 +3,7 @@ package application;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- * JDBC class (DB in use: H2 DB)
- * @author dev.charles15531@gmail.com
- *
- */
+
 public class DB {
 	static String user = "neo";
 	static String password = "";
